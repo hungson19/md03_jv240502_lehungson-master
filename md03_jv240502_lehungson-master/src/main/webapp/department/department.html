@@ -1,0 +1,50 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Department Manager</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+</head>
+<body>
+<div class="card-header card text-center">
+
+    <h1>Department Management Page</h1>
+</div>
+
+<button type="button" class="btn btn-warning btn-lg" onclick="window.location.href='/department/create'">create</button>
+<table class="table">
+    <thead>
+    <tr>
+        <th scope="col">#</th>
+        <th scope="col">id</th>
+        <th scope="col">Name</th>
+        <th scope="col">Description</th>
+        <th scope="col">Status</th>
+        <th scope="col">Tools</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="department, forObj : ${departments}"
+        th:if="${department.status} == true">
+        <th scope="row" th:text="${forObj.index + 1}"></th>
+        <th th:text="${department.id}"></th>
+        <td th:text="${department.name}"></td>
+        <td th:text="${department.description}"></td>
+        <td th:text="${department.getStatusText()}"></td>
+        <td>
+            <button type="button" class="btn btn-secondary">
+                <a style="color: black; text-decoration: underline;" th:href="@{'/department/delete/' + ${department.id}}">Delete</a>
+            </button>
+            <button type="button" class="btn btn-info">
+                <a style="color: black; text-decoration: underline;" th:href="@{'/department/edit/' + ${department.id}}">Edit</a>
+            </button>
+        </td>
+    </tr>
+    </tbody>
+</table>
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+</body>
+</html>
